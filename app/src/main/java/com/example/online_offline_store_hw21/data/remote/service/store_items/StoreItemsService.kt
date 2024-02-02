@@ -1,6 +1,6 @@
-package com.example.online_offline_store_hw21.data.service.store_items
+package com.example.online_offline_store_hw21.data.remote.service.store_items
 
-import com.example.online_offline_store_hw21.data.model.StoreItemDto
+import com.example.online_offline_store_hw21.data.remote.model.StoreItemDto
 import retrofit2.Response
 import retrofit2.http.GET
 

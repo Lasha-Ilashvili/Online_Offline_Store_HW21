@@ -1,8 +1,8 @@
 package com.example.online_offline_store_hw21.di
 
-import com.example.online_offline_store_hw21.data.common.HandleResponse
+import com.example.online_offline_store_hw21.data.local.dao.ItemDao
+import com.example.online_offline_store_hw21.data.remote.data_source.StoreItemDataSource
 import com.example.online_offline_store_hw21.data.repository.store_items.StoreItemsRepositoryImpl
-import com.example.online_offline_store_hw21.data.service.store_items.StoreItemsService
 import com.example.online_offline_store_hw21.domain.repository.StoreItemsRepository
 import dagger.Module
 import dagger.Provides
@@ -18,12 +18,12 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideStoreItemsRepository(
-        storeItemsService: StoreItemsService,
-        handleResponse: HandleResponse
+        itemDao: ItemDao,
+        storeItemDataSource: StoreItemDataSource
     ): StoreItemsRepository {
         return StoreItemsRepositoryImpl(
-            storeItemsService = storeItemsService,
-            handleResponse = handleResponse
+            itemDao = itemDao,
+            storeItemDataSource = storeItemDataSource
         )
     }
 }

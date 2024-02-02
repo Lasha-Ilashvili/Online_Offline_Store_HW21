@@ -1,28 +1,23 @@
 package com.example.online_offline_store_hw21.data.common
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 
 
 class HandleResponse {
 
-    fun <T : Any> safeApiCall(call: suspend () -> Response<T>): Flow<Resource<T>> = flow {
-        emit(Resource.Loading(loading = true))
-
+    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>): Resource<T> =
         try {
             val response = call.invoke()
             val body = response.body()
 
             if (response.isSuccessful && body != null) {
-                emit(Resource.Success(data = body))
+                Resource.Success(data = body)
             } else {
-                emit(Resource.Error(response.errorBody()?.string() ?: ""))
+                Resource.Error
             }
         } catch (e: Throwable) {
-            emit(Resource.Error(e.message ?: ""))
+            Resource.Error
         } finally {
-            emit(Resource.Loading(loading = false))
+            Resource.Loading(loading = false)
         }
-    }
 }

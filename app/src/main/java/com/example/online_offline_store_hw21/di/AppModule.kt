@@ -1,12 +1,17 @@
 package com.example.online_offline_store_hw21.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.online_offline_store_hw21.data.common.HandleResponse
-import com.example.online_offline_store_hw21.data.service.store_items.StoreItemsService
+import com.example.online_offline_store_hw21.data.local.dao.ItemDao
+import com.example.online_offline_store_hw21.data.local.database.AppDatabase
+import com.example.online_offline_store_hw21.data.remote.service.store_items.StoreItemsService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -41,5 +46,20 @@ object AppModule {
     @Provides
     fun provideStoreItemsService(retrofit: Retrofit): StoreItemsService {
         return retrofit.create(StoreItemsService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java, "store_database"
+        ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideItemDao(appDatabase: AppDatabase): ItemDao {
+        return appDatabase.itemDao()
     }
 }

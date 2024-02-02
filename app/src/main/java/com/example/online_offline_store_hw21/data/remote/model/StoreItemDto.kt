@@ -1,4 +1,4 @@
-package com.example.online_offline_store_hw21.data.model
+package com.example.online_offline_store_hw21.data.remote.model
 
 import com.squareup.moshi.JsonClass
 

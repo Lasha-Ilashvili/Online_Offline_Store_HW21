@@ -5,5 +5,5 @@ import com.example.online_offline_store_hw21.domain.model.StoreItem
 import kotlinx.coroutines.flow.Flow
 
 interface StoreItemsRepository {
-    suspend fun getStoreItems(): Flow<Resource<List<StoreItem>>>
+    fun getStoreItems(): Flow<Resource<List<StoreItem>>>
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.online_offline_store_hw21.data.common.Resource
 import com.example.online_offline_store_hw21.domain.usecase.store_items.GetStoreItemsUseCase
+import com.example.online_offline_store_hw21.presentation.event.StoreItemsEvent
 import com.example.online_offline_store_hw21.presentation.state.store_items.StoreItemsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +26,14 @@ class MainPageViewModel @Inject constructor(
         setList()
     }
 
+    fun onEvent(event: StoreItemsEvent) {
+        when (event) {
+            StoreItemsEvent.ResetErrorState -> resetErrorMessage()
+            StoreItemsEvent.Refresh -> setList()
+            StoreItemsEvent.ResetSuccessState -> resetSuccessState()
+        }
+    }
+
     private fun setList() {
         viewModelScope.launch {
             storeItemsUseCase().collect {
@@ -37,7 +46,7 @@ class MainPageViewModel @Inject constructor(
 
                     is Resource.Error -> {
                         _storeItems.update { currentState ->
-                            currentState.copy(errorMessage = it.errorMessage)
+                            currentState.copy(errorState = true)
                         }
                     }
 
@@ -48,6 +57,18 @@ class MainPageViewModel @Inject constructor(
                     }
                 }
             }
+        }
+    }
+
+    private fun resetSuccessState() {
+        _storeItems.update { currentState ->
+            currentState.copy(data = null)
+        }
+    }
+
+    private fun resetErrorMessage() {
+        _storeItems.update { currentState ->
+            currentState.copy(errorState = null)
         }
     }
 }
