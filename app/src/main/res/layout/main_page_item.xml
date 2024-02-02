@@ -6,24 +6,28 @@
     android:layout_height="wrap_content"
     android:layout_margin="19dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/ivStoreItemBg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_bg"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivStoreItem"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/item_bg"
-        app:layout_constraintBottom_toBottomOf="@id/ivStoreItemBg"
-        app:layout_constraintEnd_toEndOf="@id/ivStoreItemBg"
-        app:layout_constraintStart_toStartOf="@id/ivStoreItemBg"
-        app:layout_constraintTop_toTopOf="@id/ivStoreItemBg"
-        tools:src="@drawable/ic_launcher_foreground" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivStoreItem"
+            android:layout_width="140dp"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:scaleType="center"
+            app:layout_constraintBottom_toBottomOf="@id/ivStoreItemBg"
+            app:layout_constraintEnd_toEndOf="@id/ivStoreItemBg"
+            app:layout_constraintStart_toStartOf="@id/ivStoreItemBg"
+            app:layout_constraintTop_toTopOf="@id/ivStoreItemBg"
+            tools:src="@drawable/ic_launcher_foreground" />
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/ibFavorite"
@@ -31,7 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/favorite_bg"
+        android:elevation="5dp"
         android:src="@drawable/ic_heart_unfilled"
+        android:translationZ="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivStoreItemBg"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -54,8 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/sf_pro_display_regular"
-        android:textSize="14sp"
         android:textColor="@color/white"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"

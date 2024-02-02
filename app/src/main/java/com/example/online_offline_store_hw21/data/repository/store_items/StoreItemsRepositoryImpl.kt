@@ -17,11 +17,16 @@ import javax.inject.Inject
 
 class StoreItemsRepositoryImpl @Inject constructor(
     private val itemDao: ItemDao,
-    private val storeItemDataSource: StoreItemDataSource
+    private val storeItemDataSource: StoreItemDataSource,
+//    private val connectivityManager: ConnectivityManager
 ) : StoreItemsRepository {
 
     override fun getStoreItems(): Flow<Resource<List<StoreItem>>> {
         return flow {
+
+//            connectivityManager.
+
+
             emit(Resource.Loading(loading = true))
 
             val remoteItemsResponse = storeItemDataSource()

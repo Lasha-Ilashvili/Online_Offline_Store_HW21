@@ -6,6 +6,6 @@ import javax.inject.Inject
 class GetStoreItemsUseCase @Inject constructor(
     private val storeItemsRepository: StoreItemsRepository
 ) {
-    suspend operator fun invoke() =
+    operator fun invoke() =
         storeItemsRepository.getStoreItems()
 }
