@@ -1,5 +1,6 @@
 package com.example.online_offline_store_hw21.data.local.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -11,5 +12,7 @@ data class StoreItemEntity(
     val cover: String,
     val price: String,
     val title: String,
-    val favorite: Boolean
+    val favorite: Boolean,
+    @ColumnInfo(defaultValue = "")
+    val category: String
 )

@@ -50,6 +50,15 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>(FragmentMainPageB
             rvStoreItems.adapter = MainPageRecyclerAdapter().apply {
                 setData(it)
             }
+
+            val categorySet = mutableSetOf<String>()
+            for (item in it) {
+                categorySet.add(item.category)
+            }
+
+            rvCategory.adapter = MainPageCategoryRecyclerAdapter().apply {
+                setData(categorySet.toList())
+            }
         }
     }
 }

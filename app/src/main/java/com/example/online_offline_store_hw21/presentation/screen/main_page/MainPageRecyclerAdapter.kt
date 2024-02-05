@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.online_offline_store_hw21.R
-import com.example.online_offline_store_hw21.databinding.MainPageItemBinding
+import com.example.online_offline_store_hw21.databinding.StoreItemBinding
 import com.example.online_offline_store_hw21.domain.model.StoreItem
 import com.example.online_offline_store_hw21.presentation.extension.loadImage
 
@@ -17,7 +17,7 @@ class MainPageRecyclerAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPageItemViewHolder {
         return MainPageItemViewHolder(
-            MainPageItemBinding.inflate(
+            StoreItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -36,7 +36,7 @@ class MainPageRecyclerAdapter :
     override fun getItemCount(): Int = storeItemList.size
 
 
-    inner class MainPageItemViewHolder(private val binding: MainPageItemBinding) :
+    inner class MainPageItemViewHolder(private val binding: StoreItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {

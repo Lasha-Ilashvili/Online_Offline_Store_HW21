@@ -18,6 +18,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["room.schemaLocation"] = "$projectDir/schemas"
+            }
+        }
     }
 
     buildTypes {
@@ -78,4 +84,8 @@ dependencies {
 
 kapt {
     correctErrorTypes = false
+}
+
+ksp {
+    arg("room.schemaLocation", "${project.projectDir}/schemas")
 }

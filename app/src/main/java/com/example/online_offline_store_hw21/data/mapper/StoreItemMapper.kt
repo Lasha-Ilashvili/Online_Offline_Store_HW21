@@ -10,7 +10,8 @@ fun StoreItemDto.toEntity() = StoreItemEntity(
     cover = cover,
     price = price,
     title = title,
-    favorite = favorite
+    favorite = favorite,
+    category = category
 )
 
 fun StoreItemEntity.toDomain() = StoreItem(
@@ -18,5 +19,6 @@ fun StoreItemEntity.toDomain() = StoreItem(
     cover = cover,
     price = price,
     title = title,
-    favorite = favorite
+    favorite = favorite,
+    category = category
 )
